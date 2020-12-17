@@ -9,7 +9,7 @@ class Sprite(pygame.sprite.Sprite):
 
     Sprites = pygame.sprite.Group()
 
-    def __init__(self, x, y, width, height, color):
+    def __init__(self, x, y, width, height, color, name):
         """Creation of Sprite."""
         pygame.sprite.Sprite.__init__(self)
         Sprite.Sprites.add(self)
@@ -23,6 +23,8 @@ class Sprite(pygame.sprite.Sprite):
         self.rect.width = width
         self.rect.height = height
 
+        self.name = name
+
 
 class Rect(Sprite):
     """Simple Rectangle Base Class."""
@@ -32,11 +34,9 @@ class Rect(Sprite):
     def __init__(self, x, y, width, height, color, name):
         """Creation of Rectangle."""
         pygame.sprite.Sprite.__init__(self)
-        Sprite.__init__(self, x, y, width, height, color)
+        Sprite.__init__(self, x, y, width, height, color, name)
         # There can be multiple instances of the same class
         Rect.instances.add(self)
-
-        self.name = name
 
     def update(self):
         """Update Function."""
