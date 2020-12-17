@@ -27,13 +27,20 @@ class Sprite(pygame.sprite.Sprite):
 class Rect(Sprite):
     """Simple Rectangle Base Class."""
 
-    group = pygame.sprite.Group()
+    instances = pygame.sprite.Group()
 
-    def __init__(self, x, y, width, height, color):
+    def __init__(self, x, y, width, height, color, name):
         """Creation of Rectangle."""
         pygame.sprite.Sprite.__init__(self)
         Sprite.__init__(self, x, y, width, height, color)
-        Rect.group.add(self)
+        # There can be multiple instances of the same class
+        Rect.instances.add(self)
+
+        self.name = name
+
+    def update(self):
+        """Update Function."""
+        print(f"Updated {self.name}")
 
 
 # Initialisation
@@ -42,8 +49,8 @@ screen = pygame.display.set_mode((800, 600), vsync=True)
 clock = pygame.time.Clock()
 
 # Creating Objects
-rect1 = Rect(100, 100, 100, 100, (0, 255, 0))
-rect2 = Rect(200, 400, 100, 100, (255, 0, 0))
+rect1 = Rect(100, 100, 100, 100, (0, 255, 0), "Rect1")
+rect2 = Rect(200, 400, 100, 100, (255, 0, 0), "Rect2")
 
 # Game Loop
 Running = True
@@ -52,6 +59,9 @@ while Running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             Running = False
+
+    # Update all Sprites
+    Sprite.Sprites.update()
 
     # Draw all Sprites
     Sprite.Sprites.draw(screen)
