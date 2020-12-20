@@ -55,10 +55,10 @@ class Player(Sprite):
         Sprite.__init__(self, x, y, width, height, color, name)
         Player.instances.add(self)
 
+        # Speed of the player
         self.speed = 5
-        self.changeX = 0
-        self.changeY = 0
 
+        # Movement Controls
         self.keys_movement = {
             str(pygame.K_w): (0, -self.speed, "up"),
             str(pygame.K_a): (-self.speed, 0, "left"),
@@ -135,6 +135,7 @@ class Projectile(Sprite):
         self.speed = 10
         self.direction = direction
 
+        # self.posChange["example"]=(x change, y change)
         self.posChange = {
             "left": (-self.speed, 0),
             "right": (self.speed, 0),
