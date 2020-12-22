@@ -16,21 +16,39 @@ class Room:
         self.keybinds = dict({})
         self.clocks = dict({})
 
-        for name, value in enumerate(kwargs):
+        for name, value in kwargs.items():
             if hasattr(self, str(name)):
                 setattr(self, name, value)
+
+    def createInstance(self, instance):
+        """
+        Create a new instance.
+
+        Args:
+            instance (class): Class of the new instance.
+        """
+        self.instances.add(instance)
+
+    def removeInstance(self, instance):
+        """
+        Remove an instance.
+
+        Args:
+            instance (class): Class of the instance to remove.
+        """
+        self.instances.remove(instance)
 
     def createFont(self, fontName, fontType, fontSize, fontPosition, fontText, fontColor, show=True):
         """Create new font object.
 
         Args:
-            fontName (string): Name of the font. (Example: "Jerry")
-            fontType (string): Font type. (Example: "UbuntuMono")
-            fontSize (int): Size of the font.
-            fontPosition (tuple): (x,y) position of the font.
-            fontText (string): Content of the font.
-            fontColor (tuple): (R,G,B) color of the font.
-            show (bool): Toggle whether to show font or not.
+            fontName(string): Name of the font. (Example: "Jerry")
+            fontType(string): Font type. (Example: "UbuntuMono")
+            fontSize(int): Size of the font.
+            fontPosition(tuple): (x, y) position of the font.
+            fontText(string): Content of the font.
+            fontColor(tuple): (R, G, B) color of the font.
+            show(bool): Toggle whether to show font or not.
         """
         fontPath = pygame.font.match_font(fontType)
         self.fonts[fontName] = {
@@ -45,10 +63,10 @@ class Room:
         """Update individual font.
 
         Args:
-            font (class<pygame.font.Font>): Font class.
-            fontText (string): Font content.
-            fontColor (tuple): (R,G,B) color of the font.
-            fontPosition (tuple): (x,y) position of the font.
+            font (class < pygame.font.Font >): Font class.
+            fontText(string): Font content.
+            fontColor(tuple): (R, G, B) color of the font.
+            fontPosition(tuple): (x, y) position of the font.
         """
         surface = font.render(fontText, False, fontColor)
         rect = surface.get_rect(center=(fontPosition[0], fontPosition[1]))
@@ -67,8 +85,8 @@ class Room:
         """Create keybind for the room to trigger a function.
 
         Args:
-            key (int): Key that will be used to trigger the function
-            function (method): Function to be run.
+            key(int): Key that will be used to trigger the function
+            function(method): Function to be run.
         """
         self.keybinds[str(key)] = function
 
@@ -77,7 +95,7 @@ class Room:
         Return the timer by its name.
 
         Args:
-            name (string): Name of the timer
+            name(string): Name of the timer
 
         Returns:
             pygame.clock.Clock(): Clock object.
@@ -89,7 +107,7 @@ class Room:
         Reset the selected timer.
 
         Args:
-            name (string): Name of the timer.
+            name(string): Name of the timer.
         """
         if self.clocks[name]["done"] == True:
             # Reset Time and Done values
@@ -119,8 +137,8 @@ class Room:
         Create a new timer.
 
         Args:
-            name (string): Name of the timer.
-            milliseconds (int): Time till the timer stops.
+            name(string): Name of the timer.
+            milliseconds(int): Time till the timer stops.
         """
         self.clocks[name] = {
             "clock": pygame.time.Clock(),
@@ -141,4 +159,5 @@ class Room:
 
         self.updateTimers()
         self.instances.update()
+        self.instances.draw(self.screen)
         self.checkKeybinds()

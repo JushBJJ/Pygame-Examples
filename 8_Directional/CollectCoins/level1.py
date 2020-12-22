@@ -1,6 +1,7 @@
 """Level1."""
 import pygame
-from room import *
+from player import Player
+from room import Room
 
 
 class Level1(pygame.sprite.Sprite, Room):
@@ -30,6 +31,9 @@ class Level1(pygame.sprite.Sprite, Room):
         # Keybinds
         self.createKeybind(pygame.K_m, self.go_to_level)
         self.createTimer("M Press2", 900)
+
+        # Instances
+        self.createInstance(Player("Player", (100, 100), 64, 64, (0, 0, 255)))
 
     def go_to_level(self):
         """Go to the next level."""
