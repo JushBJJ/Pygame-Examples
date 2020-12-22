@@ -138,7 +138,7 @@ class Projectile(Sprite):
             print("Destroyed Bullet")
 
 
-# Initialisation
+# Initialization
 pygame.init()
 screen = pygame.display.set_mode((800, 600), vsync=True)
 clock = pygame.time.Clock()
