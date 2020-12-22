@@ -1,15 +1,15 @@
 """Collect Coins Game."""
 import pygame
-from game import *
-from titlescreen import *
-from level1 import *
+from game import Game
+from titlescreen import Titlescreen
+from level1 import Level1
 
 pygame.init()
 pygame.font.init()
 screen = pygame.display.set_mode((800, 600))
 
 done = False
-
+clock = pygame.time.Clock()
 game = Game()
 
 # Titlescreen
@@ -28,5 +28,6 @@ while not done:
 
     game.update()
     pygame.display.flip()
+    clock.tick(60)  # 60 FPS
 
 pygame.quit()

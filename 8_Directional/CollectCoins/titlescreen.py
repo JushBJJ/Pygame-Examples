@@ -1,6 +1,6 @@
 """Titlescreen."""
 import pygame
-from room import *
+from room import Room
 
 
 class Titlescreen(pygame.sprite.Sprite, Room):
