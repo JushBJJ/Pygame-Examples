@@ -33,7 +33,6 @@ class Rect(Sprite):
 
     def __init__(self, x, y, width, height, color, name="Rectangle"):
         """Creation of Rectangle."""
-        pygame.sprite.Sprite.__init__(self)
         Sprite.__init__(self, x, y, width, height, color, name)
         # There can be multiple instances of the same class
         Rect.instances.add(self)
