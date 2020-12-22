@@ -208,13 +208,17 @@ class Titlescreen(pygame.sprite.Sprite, Room):
         pygame.sprite.Sprite.__init__(self)
         Room.__init__(self, "Titlescreen")
         self.game = game
+
+        # Text
         self.createFont("Title", "dejavusansmono", 50, (400, 300),
                         "Titlescreen", (255, 255, 255))
+
         height = self.fonts["Title"]["object"].get_height()
 
         self.createFont("N", "dejavusansmono", 40, (400, 300+height),
                         "Press N to go to next level.", (255, 255, 255))
 
+        # Keybinds
         self.createKeybind(pygame.K_n, self.go_to_level)
         self.createTimer("N Press1", 900)
 
@@ -244,11 +248,18 @@ class Level1(pygame.sprite.Sprite, Room):
         pygame.sprite.Sprite.__init__(self)
         Room.__init__(self, "Level1")
         self.game = game
-        self.createFont("Title", "dejavusansmono", 50, (400, 300),
-                        "Level1", (255, 255, 255))
+
+        # Create text
+        self.createFont("Title", "dejavusansmono", 50,
+                        (400, 300), "Level1", (255, 255, 255))
+
+        # Height
         height = self.fonts["Title"]["object"].get_height()
-        self.createFont("N", "dejavusansmono", 40, (400, 300+height),
-                        "Press M to go back", (255, 255, 255))
+
+        self.createFont("N", "dejavusansmono", 40, (400, 300 +
+                                                    height), "Press M to go back", (255, 255, 255))
+
+        # Keybinds
         self.createKeybind(pygame.K_m, self.go_to_level)
         self.createTimer("M Press2", 900)
 
