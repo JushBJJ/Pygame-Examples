@@ -39,5 +39,7 @@ class Rectangle:
             x (int): x of the sprite.
             y (int): y of the sprite.
         """
-        self.rect.x = self.x = x
-        self.rect.y = self.y = y
+        self.x = x
+        self.y = y
+
+        self.rect.center = (x, y)

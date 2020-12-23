@@ -12,11 +12,9 @@ done = False
 clock = pygame.time.Clock()
 game = Game()
 
-# Titlescreen
-room = game.add_room(Titlescreen(game))
-
-# Level 1
-room = game.add_room(Level1(game))
+# Rooms
+game.add_room(Titlescreen(game))
+game.add_room(Level1(game))
 
 # Game
 game.switch_room("Titlescreen")
