@@ -1,6 +1,7 @@
 """Level1."""
 import pygame
 from player import Player
+from block import Block
 from room import Room
 
 
@@ -34,6 +35,7 @@ class Level1(pygame.sprite.Sprite, Room):
 
         # Instances
         self.createInstance(Player("Player", (100, 100), 64, 64, (0, 0, 255)))
+        self.createInstance(Block("Block", (100, 300), 64, 64, (255, 130, 70)))
 
     def go_to_level(self):
         """Go to the next level."""
