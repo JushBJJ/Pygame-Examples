@@ -26,9 +26,13 @@ class Room:
 
         Args:
             instance (class): Class of the new instance.
+
+        Returns:
+            instance (class): Instance of the new instance
         """
         setattr(instance, 'instanceGroup', self.instances)
         self.instances.add(instance)
+        return instance
 
     def removeInstance(self, instance):
         """

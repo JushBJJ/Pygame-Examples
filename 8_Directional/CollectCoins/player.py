@@ -6,7 +6,7 @@ from rectangle import Rectangle
 class Player(pygame.sprite.Sprite, Rectangle):
     """Player."""
 
-    def __init__(self, name, pos, width, height, color):
+    def __init__(self, name, pos, width, height, color, **kwargs):
         """
         Initialize Player.
 
@@ -21,6 +21,8 @@ class Player(pygame.sprite.Sprite, Rectangle):
 
         self.speed = 5
         self.direction = "right"
+        self.player = True
+        self.coins = 0
 
         # * Will be automatically set at the createInstance() function.
         self.instanceGroup = None
@@ -107,3 +109,5 @@ class Player(pygame.sprite.Sprite, Rectangle):
         """Update."""
         self.controlsEvent()
         self.touchEvent()
+
+        print("Coins: "+str(self.coins))
