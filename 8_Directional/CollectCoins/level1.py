@@ -3,6 +3,7 @@ import pygame
 from player import Player
 from block import Block
 from room import Room
+from coin import Coin
 
 
 class Level1(pygame.sprite.Sprite, Room):
@@ -18,24 +19,20 @@ class Level1(pygame.sprite.Sprite, Room):
         pygame.sprite.Sprite.__init__(self)
         Room.__init__(self, "Level1")
         self.game = game
-
-        # Create text
-        self.createFont("Title", "dejavusansmono", 50,
-                        (400, 300), "Level1", (255, 255, 255))
-
-        # Height
-        height = self.fonts["Title"]["object"].get_height()
-
-        self.createFont("N", "dejavusansmono", 40, (400, 300 +
-                                                    height), "Press M to go back", (255, 255, 255))
-
-        # Keybinds
-        self.createKeybind(pygame.K_m, self.go_to_level)
-        self.createTimer("M Press2", 900)
+        self.player = None
 
         # Instances
-        self.createInstance(Player("Player", (100, 100), 64, 64, (0, 0, 255)))
+        self.player = self.createInstance(
+            Player("Player", (100, 100), 64, 64, (0, 0, 255)))
         self.createInstance(Block("Block", (100, 300), 64, 64, (255, 130, 70)))
+        self.createInstance(Coin("Coin", (100, 550), 64, 64, (255, 255, 0)))
+
+        # Create text
+        self.createFont("Title", "dejavusansmono", 20,
+                        (750, 16), "Level1", (255, 255, 255))
+
+        self.createFont("Coins", "dejavusansmono", 20, (70, 16),
+                        "Coins: Not loaded.", (255, 255, 255))
 
     def go_to_level(self):
         """Go to the next level."""
@@ -47,4 +44,5 @@ class Level1(pygame.sprite.Sprite, Room):
 
     def update(self):
         """Update."""
+        self.fonts["Coins"]["text"] = "Coins: "+str(self.player.coins)
         self.updateRoom()
