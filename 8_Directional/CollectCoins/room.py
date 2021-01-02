@@ -1,5 +1,6 @@
 """Room."""
 import pygame
+from PIL import Image
 
 
 class Room:
@@ -19,6 +20,37 @@ class Room:
         for name, value in kwargs.items():
             if hasattr(self, str(name)):
                 setattr(self, name, value)
+
+    def updateRoom(self):
+        """Update room."""
+        self.screen.fill(self.bgColor)
+
+        for name in self.fonts.keys():
+            font = self.fonts[name]
+            if font["show"]:
+                self.updateFont(font["object"], font["text"],
+                                font["color"], font["position"])
+
+        self.updateTimers()
+        self.instances.update()
+        self.instances.draw(self.screen)
+        self.checkKeybinds()
+
+    # For AI
+
+    def getInstance(self, name):
+        """
+        Get instance from name.
+
+        Args:
+            name (string): Name of the instance.
+
+        Returns:
+            sprite: Instance
+        """
+        for instance in self.instances:
+            if instance.name == name:
+                return instance
 
     def createInstance(self, instance):
         """
@@ -151,18 +183,3 @@ class Room:
             "time": 0,
             "done": True
         }
-
-    def updateRoom(self):
-        """Update room."""
-        self.screen.fill(self.bgColor)
-
-        for name in self.fonts.keys():
-            font = self.fonts[name]
-            if font["show"]:
-                self.updateFont(font["object"], font["text"],
-                                font["color"], font["position"])
-
-        self.updateTimers()
-        self.instances.update()
-        self.instances.draw(self.screen)
-        self.checkKeybinds()

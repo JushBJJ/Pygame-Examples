@@ -2,6 +2,7 @@
 
 import pygame
 from rectangle import Rectangle
+import random
 
 
 class Coin(pygame.sprite.Sprite, Rectangle):
@@ -20,6 +21,7 @@ class Coin(pygame.sprite.Sprite, Rectangle):
         pygame.sprite.Sprite.__init__(self)
         Rectangle.__init__(self, name, pos, width, height, color)
 
+        self.coin = True
         self.instanceGroup = None
 
     def update(self):
@@ -30,4 +32,6 @@ class Coin(pygame.sprite.Sprite, Rectangle):
             if hasattr(sprite, "player"):
                 sprite.coins += 1
 
-                self.instanceGroup.remove(self)
+                self.changePos(random.randrange(300, 600),
+                               random.randrange(200, 400))
+                return 1
