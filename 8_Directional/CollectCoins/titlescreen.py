@@ -19,7 +19,7 @@ class Titlescreen(pygame.sprite.Sprite, Room):
 
         # Text
         self.createFont("Title", "dejavusansmono", 50, (400, 300),
-                        "Titlescreen", (255, 255, 255))
+                        "Titlescreen", (0, 255, 255))
 
         height = self.fonts["Title"]["object"].get_height()
 

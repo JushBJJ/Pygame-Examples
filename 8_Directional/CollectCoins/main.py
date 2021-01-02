@@ -1,11 +1,11 @@
 """Collect Coins Game."""
 import pygame
+
 from game import Game
 from titlescreen import Titlescreen
 from level1 import Level1
 
 pygame.init()
-pygame.font.init()
 screen = pygame.display.set_mode((800, 600))
 
 done = False
